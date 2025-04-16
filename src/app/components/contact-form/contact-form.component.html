@@ -1,64 +1,82 @@
-<form #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit()">
-  <fieldset>
+<form #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit()" class="p-fluid">
+
+  <div class="field">
     <label for="lastname">Nom</label>
-    <input id="lastname" name="lastname" type="text" require min="2" [(ngModel)]="newMessage.lastname" #lastname="ngModel">
-    @if (lastname.errors) {
-      <div>
-        @if (lastname.errors['required']) {
-          <span>Le nom est requis</span>
-        }
-        @if (lastname.errors['minlength']) {
-          <span>La longueur minimale doit être supérieure à 2</span>
-        }
-      </div>
-    }
-  </fieldset>
+    <input 
+      id="lastname" 
+      type="text" 
+      name="lastname" 
+      pInputText 
+      required 
+      minlength="2" 
+      [(ngModel)]="newMessage.lastname" 
+      #lastname="ngModel"
+    />
+    <small *ngIf="lastname.invalid && lastname.touched" class="p-error">
+      <ng-container *ngIf="lastname.errors?.['required']">Le nom est requis</ng-container>
+      <ng-container *ngIf="lastname.errors?.['minlength']">La longueur minimale est de 2 caractères</ng-container>
+    </small>
+  </div>
 
-  <fieldset>
+  <div class="field">
     <label for="firstname">Prénom</label>
-    <input id="firstname" name="firstname" type="text" require min="2" [(ngModel)]="newMessage.firstname" #firstname="ngModel">
-    @if (firstname.errors) {
-      <div>
-        @if (firstname.errors['required']) {
-          <span>Le prénom est requis</span>
-        }
-        @if (firstname.errors['minlength']) {
-          <span>La longueur minimale doit être supérieure à 2</span>
-        }
-      </div>
-    }
-  </fieldset>
+    <input 
+      id="firstname" 
+      type="text" 
+      name="firstname" 
+      pInputText 
+      required 
+      minlength="2" 
+      [(ngModel)]="newMessage.firstname" 
+      #firstname="ngModel"
+    />
+    <small *ngIf="firstname.invalid && firstname.touched" class="p-error">
+      <ng-container *ngIf="firstname.errors?.['required']">Le prénom est requis</ng-container>
+      <ng-container *ngIf="firstname.errors?.['minlength']">La longueur minimale est de 2 caractères</ng-container>
+    </small>
+  </div>
 
-  <fieldset>
-    <label for="email">Contact</label>
-    <input id="email" name="email" type="email" require email [(ngModel)]="newMessage.email" #email="ngModel">
-    @if (email.errors) {
-      <div>
-        @if (email.errors['required']) {
-          <span>L'email est requis</span>
-        }
-        @if (email.errors['email']) {
-          <span>Veuillez fournir une adresse email valide</span>
-        }
-      </div>
-    }
-  </fieldset>
+  <div class="field">
+    <label for="email">Email</label>
+    <input 
+      id="email" 
+      type="email" 
+      name="email" 
+      pInputText 
+      required 
+      email 
+      [(ngModel)]="newMessage.email" 
+      #email="ngModel"
+    />
+    <small *ngIf="email.invalid && email.touched" class="p-error">
+      <ng-container *ngIf="email.errors?.['required']">L'email est requis</ng-container>
+      <ng-container *ngIf="email.errors?.['email']">Adresse email invalide</ng-container>
+    </small>
+  </div>
 
-  <fieldset>
+  <div class="field">
     <label for="content">Contenu du message</label>
-    <textarea id="content" name="content" require minlength="20" rows="4" cols="50" [(ngModel)]="newMessage.content" #content="ngModel"></textarea>
-    @if (content.errors) {
-      <div>
-        @if (content.errors['required']) {
-          <span>Le contenu du message est requis</span>
-        }
-        @if (content.errors['minlength']) {
-          <span>Le contenu doit comporter au moins 20 caractères</span>
-        }
-      </div>
-    }
-  </fieldset>
+    <textarea 
+      id="content" 
+      name="content" 
+      pInputTextarea 
+      rows="4" 
+      required 
+      minlength="20" 
+      [(ngModel)]="newMessage.content" 
+      #content="ngModel"
+    ></textarea>
+    <small *ngIf="content.invalid && content.touched" class="p-error">
+      <ng-container *ngIf="content.errors?.['required']">Le message est requis</ng-container>
+      <ng-container *ngIf="content.errors?.['minlength']">Minimum 20 caractères</ng-container>
+    </small>
+  </div>
 
-  <button type="reset">Restaurer</button>
-  <button type="submit">Sauvegarder</button>
+  <div class="card flex justify-content-center gap-2">
+    <p-toast />
+    <p-confirmDialog />
+    <p-button (onClick)="confirm1($event)" type="submit" label="Sauvegarder" [outlined]="true" [disabled]="!contactForm.valid" />
+    <p-button (onClick)="confirm2($event)" type="reset" label="Restaurer" severity="danger" [outlined]="true" />
+  </div>
+
 </form>

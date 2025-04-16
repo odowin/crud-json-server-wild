@@ -1,15 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
+import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
+
+import { PasswordModule } from 'primeng/password';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-signup-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonModule, InputTextModule, DialogModule, DividerModule, PasswordModule, FormsModule],
   templateUrl: './signup-form.component.html',
   styleUrl: './signup-form.component.scss'
 })
 export class SignupFormComponent {
   private formBuilder = inject(FormBuilder);
+  visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
+  }
 
   signUpForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(3)]],

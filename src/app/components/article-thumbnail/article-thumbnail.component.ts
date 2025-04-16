@@ -3,10 +3,13 @@ import { Article } from '../../models/article.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+
 @Component({
   selector: 'app-article-thumbnail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, CardModule, ButtonModule],
   templateUrl: './article-thumbnail.component.html',
   styleUrl: './article-thumbnail.component.scss'
 })

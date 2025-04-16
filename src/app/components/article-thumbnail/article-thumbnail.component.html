@@ -1,4 +1,4 @@
-<div
+<!-- <div
   class="article-thumbnail"
   ngClass="{ 'popular-article': article.likeCount > 200 }"
 >
@@ -25,4 +25,39 @@
       {{ article.content }}
     </p>
   </div>
-</div>
+</div> -->
+
+<p-card [header]="article.title" [subheader]="article.categoryName" [style]="{ width: '360px' }">
+  <ng-template pTemplate="header">
+      <img alt="Card" [src]="article.image" />
+  </ng-template>
+  <p class="article-thumbnail__excerpt">
+    {{ article.content }}
+  </p>
+  <p class="article-thumbnail__date">
+    <i>publié le {{ article.createdAt | date : "dd/MM/yyyy" }}</i>
+  </p>
+  <ng-template pTemplate="footer">
+      <div class="flex gap-3 mt-1">
+          <!-- <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" /> -->
+          <p-button 
+            class="w-full" styleClass="w-full" 
+            (onClick)="sendNotification()" 
+            [label]="article.likeCount + ' ' + (article.isLiked ? '♥' : '♡')" 
+            severity="danger"
+            size="small"
+            styleClass="p-button-text"
+          ></p-button>
+          <!-- <p-button label="Save" class="w-full" styleClass="w-full" /> -->
+          <p-button
+            class="w-full" styleClass="w-full"
+            [routerLink]="['/article', article.id]"
+            label="Voir"
+            styleClass="p-button-link article-thumbnail__title"
+          ></p-button>
+          
+      </div>
+      
+
+  </ng-template>
+</p-card>

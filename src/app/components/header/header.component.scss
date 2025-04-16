@@ -1,61 +1,126 @@
-.header {
+// .header {
 
-  &-top {
-    display: flex;
-    justify-content: space-between;
+//   &-top {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 20px;
+//   }
+
+//   &-logo {
+//     font-weight: 700;
+//     font-size: 1.2rem;
+//   }
+
+//   &-nav {
+//     display: flex;
+//     gap: 20px;
+//     align-items: center;
+
+//     a {
+//       text-decoration: none;
+//       color: #333;
+//       font-weight: 500;
+//       transition: color 0.3s ease;
+
+//       &:hover {
+//         color: #F7146B;
+//       }
+//     }
+//   }
+
+//   &-button {
+//     background-color: #333;
+//     color: #fff;
+//     border: none;
+//     padding: 8px 16px;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     font-weight: 500;
+//     transition: background-color 0.3s ease;
+
+//     &:hover {
+//       background-color: #F7146B;
+//     }
+//   }
+
+//   &-title {
+//     text-align: center;
+//     margin: 60px 0;
+//     border-bottom: 1px solid #e0e0e0;
+//     border-top: 1px solid #e0e0e0;
+//     padding: 20px;
+
+//     h1 {
+//       font-size: 8rem;
+//       font-weight: 700;
+//       color: #000;
+//       margin: 0;
+//     }
+//   }
+// }
+
+
+// Définition des couleurs principales
+$primary-color: #007bff;
+$hover-color: #0056b3;
+$text-color: white;
+
+// Style global pour le header
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333;
+}
+
+// Style des boutons du header
+button {
+  &.p-link {
+    display: inline-flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-  }
-
-  &-logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
-
-  &-nav {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-
-    a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: #F7146B;
-      }
+    text-color: $text-color;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    
+    i {
+      font-size: 1.5rem;
     }
-  }
-
-  &-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #F7146B;
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
+}
 
-  &-title {
-    text-align: center;
-    margin: 60px 0;
-    border-bottom: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
-    padding: 20px;
+// Style du bouton d'inscription
+.header-button {
+  background-color: $primary-color;
+  color: $text-color;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 
-    h1 {
-      font-size: 8rem;
-      font-weight: 700;
-      color: #000;
-      margin: 0;
-    }
+  &:hover {
+    background-color: $hover-color;
   }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Flexbox pour le contenu centré dans le header
+ng-template[pTemplate="center"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
 }
